@@ -349,8 +349,6 @@ UserController.updateConfirmationById = function(id, confirmation, callback) {
         new: true
       },
       (err, user) => {
-        console.log(err);
-        console.log(user);
         Mailer.sendParticipantGuideEmail(user.email, user.profile.name);
         callback(err, user);
       }
@@ -667,8 +665,6 @@ UserController.admitUser = function(id, user, callback) {
         new: true
       },
       (err, user) => {
-        console.log(err);
-        console.log(user);
         Mailer.sendAdmittanceEmail(user.email, user.profile.name);
         callback(err, user);
       }

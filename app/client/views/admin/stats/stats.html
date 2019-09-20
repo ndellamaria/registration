@@ -162,7 +162,7 @@
               Dietary Restrictions:
             </strong>
             <span
-              ng-repeat="restriction in stats.dietaryRestrictions | orderBy: '-count'">
+              ng-repeat="restriction in stats.dietaryRestrictions">
               {{restriction.name}} ({{restriction.count}})
             </span>
           </div>
@@ -236,7 +236,7 @@
     <div class="ui list">
       <div
         class="item"
-        ng-repeat="team in stats.teams | orderBy: 'name'">
+        ng-repeat="team in stats.teams">
         <div class="header">
           {{team.name}}
         </div>
@@ -254,13 +254,13 @@
     <div class="ui list">
       <div
         class="item"
-        ng-repeat="category in stats.categories track by $index | orderBy: 'name' ">
+        ng-repeat="category in stats.categories track by $index">
         <hr>
         <div class="header">
           {{category.name}} ({{category.users.length}})
         </div>
         <hr>
-        <p ng-repeat="user in category.users track by $index | orderBy"
+        <p ng-repeat="user in category.users track by $index"
           style="line-height:7px"> {{user}} </p>
       </div>
     </div>

@@ -75,7 +75,8 @@ function calculateStats() {
 
     wantsHardware: 0,
 
-    checkedIn: 0
+    checkedIn: 0,
+    categories: {}
   };
 
   User.find({}).exec(function(err, users) {

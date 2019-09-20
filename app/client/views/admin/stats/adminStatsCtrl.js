@@ -4,8 +4,8 @@ angular.module("reg").controller("AdminStatsCtrl", [
   "$scope",
   "UserService",
   function($scope, UserService) {
-    UserService.getStats().success(function(stats) {
-      $scope.stats = stats;
+    UserService.getStats().then(function(response) {
+      $scope.stats = response.data;
       $scope.loading = false;
     });
 

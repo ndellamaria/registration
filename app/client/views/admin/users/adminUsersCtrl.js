@@ -50,9 +50,9 @@ angular.module("reg").controller("AdminUsersCtrl", [
       updatePage(response.data);
     });
 
-    UserService.getAll().success(function(data) {
-      $scope.allUsers.list = data;
-      $scope.allUsers.notSignedUp = data.filter(user => {
+    UserService.getAll().then(function(response) {
+      $scope.allUsers.list = response.data;
+      $scope.allUsers.notSignedUp = response.data.filter(user => {
         return user.verified == false || user.status.completedProfile == false;
       });
     });
@@ -130,8 +130,6 @@ angular.module("reg").controller("AdminUsersCtrl", [
 
     $scope.acceptUser = function($event, user, index) {
       $event.stopPropagation();
-
-      console.log(user);
 
       swal({
         buttons: {
