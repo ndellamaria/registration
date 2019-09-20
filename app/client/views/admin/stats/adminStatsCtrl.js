@@ -1,20 +1,16 @@
-const moment = require('moment');
+const moment = require("moment");
 
-angular.module('reg')
-  .controller('AdminStatsCtrl',[
-    '$scope',
-    'UserService',
-    function($scope, UserService){
+angular.module("reg").controller("AdminStatsCtrl", [
+  "$scope",
+  "UserService",
+  function($scope, UserService) {
+    UserService.getStats().success(function(stats) {
+      $scope.stats = stats;
+      $scope.loading = false;
+    });
 
-      UserService
-        .getStats()
-        .then(stats => {
-          $scope.stats = stats.data;
-          $scope.loading = false;
-        });
-
-      $scope.fromNow = function(date){
-        return moment(date).fromNow();
-      };
-
-    }]);
+    $scope.fromNow = function(date) {
+      return moment(date).fromNow();
+    };
+  }
+]);

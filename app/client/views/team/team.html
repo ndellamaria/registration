@@ -4,57 +4,49 @@
   </div>
   <div class="ui stackable centered page grid">
     <div class="column">
-      <div
-        class="ui error message"
-        ng-show="error">
-        {{error}}
+      <div class="ui error message" ng-show="error">
+        {{ error }}
       </div>
 
       <div class="ui segment">
-        <div
-          ng-show="!user.teamCode && !regIsOpen">
+        <div ng-show="!user.teamCode && !regIsOpen">
           <p>
             {{ TEAM.NO_TEAM_REG_CLOSED }}
           </p>
         </div>
-        <div
-          class="ui form"
-          ng-show="!user.teamCode && regIsOpen">
-
+        <div class="ui form" ng-show="!user.teamCode && regIsOpen">
           <div class="title">
-            Join or Create a Team
+            Join or Create a Team. Enter your team name and save then share it
+            with friends to come join you
           </div>
 
-          <br>
+          <br />
 
           <div class="field">
             <input
               class="ui input"
               type="text"
               placeholder="Choose your team name..."
-              ng-model="code">
+              ng-model="code"
+            />
           </div>
 
           <div class="field">
-            <button
-              class="ui fluid pink button"
-              ng-click="joinTeam()">
+            <button class="ui fluid pink button" ng-click="joinTeam()">
               Join or Create Team
             </button>
           </div>
-
         </div>
 
-        <div
-          ng-show="user.teamCode">
+        <div ng-show="user.teamCode">
           <div class="form">
             <div class="title">
               Your Team Name:
             </div>
           </div>
-          <br>
+          <br />
           <div class="subheader">
-            {{user.teamCode}}
+            {{ user.teamCode }}
           </div>
 
           <br />
@@ -67,25 +59,22 @@
             </div>
           </div>
 
-          <p
-            ng-repeat="user in teammates"
-            class="item">
-            {{user.profile.name || 'Somebody (has not filled out their profile!)'}}
+          <p ng-repeat="user in teammates" class="item">
+            {{
+              user.profile.name ||
+                "Somebody (has not filled out their profile!)"
+            }}
           </p>
 
-          <div
-            ng-show="regIsOpen">
+          <div ng-show="regIsOpen">
             <div class="ui divider"></div>
 
-            <button
-              class="ui fluid red button"
-              ng-click="leaveTeam()">Leave Team</button>
+            <button class="ui fluid red button" ng-click="leaveTeam()">
+              Leave Team
+            </button>
           </div>
-
         </div>
-
       </div>
     </div>
   </div>
-
 </div>

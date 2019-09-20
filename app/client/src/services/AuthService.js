@@ -32,10 +32,11 @@ angular.module('reg')
             email: email,
             password: password
           })
-          .then(response => {
-            loginSuccess(response.data, onSuccess);
-          }, response => {
-            loginFailure(response.data, onFailure);
+          .success(function(data){
+            loginSuccess(data, onSuccess);
+          })
+          .error(function(data){
+            loginFailure(data, onFailure);
           });
       };
 
@@ -44,18 +45,10 @@ angular.module('reg')
           .post('/auth/login', {
             token: token
           })
-          .then(response => {
             loginSuccess(response.data, onSuccess);
           }, response => {
             if (response.status === 400) {
               Session.destroy(loginFailure);
-            }
-          });
-      };
-
-      authService.logout = function(callback) {
-        // Clear the session
-        Session.destroy(callback);
         $state.go('login');
       };
 

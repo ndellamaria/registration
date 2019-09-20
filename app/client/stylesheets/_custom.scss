@@ -1,3 +1,13 @@
 // Branding overrides
 //
 // Copy variables from `_branding.scss` to this file to override default values.
+
+$primary: #008751;
+$secondary: #8de375;
+$tertiary: black;
+
+/** ASSET URLS
+ * login-bg: image for login splash page 
+ */
+
+$login-bg: url("../assets/images/Banner.jpg");

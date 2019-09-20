@@ -36,7 +36,7 @@
         </div>
 
         <div class="field" ng-show="!autoFilledSchool">
-          <label> School </label>
+          <label> School Attending/Attended. Enter 'None' if not found or not attended</label>
           <div id="school" class="ui search">
             <div class="ui input">
               <input class="prompt" type="text" placeholder="School" name="school" ng-model="user.profile.school">                
@@ -51,10 +51,16 @@
             name="year"
             ng-model="user.profile.graduationYear">
             <option value="">Graduation Year</option>
+            <option value="2016">None</option>
+            <option value="2016">before 2016</option>
             <option value="2016">2016</option>
             <option value="2017">2017</option>
             <option value="2018">2018</option>
             <option value="2019">2019</option>
+            <option value="2019">2020</option>
+            <option value="2019">2021</option>
+            <option value="2019">2022</option>
+            <option value="2019">2023</option>
           </select>
         </div>
 
@@ -75,20 +81,52 @@
           <label>I would describe myself as a...</label>
           <input type="text"
                  placeholder="Designer, Data Scientist, iOS Wizard, Hacker Extraordinaire"
-                 ng-model="user.profile.description">
+                 ng-model="user.profile.description"
+                 name="description">
         </div>
 
         <div class="field">
           <label>
-              What would you like to learn or get out of HackMIT? (optional)
+            What would you like to learn or get out of NaijaHacks? (required)
           </label>
-          <textarea ng-model="user.profile.essay">
+          <textarea ng-model="user.profile.essay" name="essay">
           </textarea>
+        </div>
+
+        <div class="field">
+          <label>
+            What programming languages/design software have you learned or worked with? (required)
+          </label>
+          <input type="text" ng-model="user.profile.languages" name="languages" >
+        </div>
+
+        <div class="field">
+          <label>Which Category will you like to participate in? (required)</label>
+          <select
+            name="focus"
+            ng-model="user.profile.focus">
+            <option value="">Category</option>
+            <option value="B">Beginner Category</option>
+            <option value="M">Main Category</option>
+          </select>
+        </div>
+
+
+        <div class="field">
+          <label> What's your phone number? (required) </label>
+          <p>
+            We need this in case we need to get ahold of you!
+          </p>
+          <input type="tel"
+                 name="phone"
+                 ng-model="user.profile.phoneNumber"
+                 placeholder="(123) - 555 - 1234"
+                 required>
         </div>
 
         <div class="field"
              ng-hide="isMitStudent">
-          <p>
+          <!-- <p>
             Because of limitations imposed by MIT, we are not legally allowed to host
             non-MIT minors (those under 18) for HackMIT 2015. Checking the box below affirms that you are or will be 18 years or older by September 19th, 2015.
           </p>

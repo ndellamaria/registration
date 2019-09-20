@@ -225,6 +225,53 @@
           <strong>Senior:</strong> {{stats.demo.year['2016']}} ({{stats.demo.year['2016'] / stats.total * 100 | number: 1}}%)
         </div>
       </div>
+  </div>
+
+  <div
+    class="ui purple segment"
+    ng-class="{'loading': loading}">
+    <div class="ui header">
+      Teams ({{stats.teams.length}})
+    </div>
+    <div class="ui list">
+      <div
+        class="item"
+        ng-repeat="team in stats.teams | orderBy: 'name'">
+        <div class="header">
+          {{team.name}}
+        </div>
+        <span ng-repeat="user in team.users"> {{user}} <br/> </span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="ui purple segment"
+    ng-class="{'loading': loading}">
+    <div class="ui header">
+      Categories
+    </div>
+    <div class="ui list">
+      <div
+        class="item"
+        ng-repeat="category in stats.categories track by $index | orderBy: 'name' ">
+        <hr>
+        <div class="header">
+          {{category.name}} ({{category.users.length}})
+        </div>
+        <hr>
+        <p ng-repeat="user in category.users track by $index | orderBy"
+          style="line-height:7px"> {{user}} </p>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="ui red segment"
+    ng-class="{'loading': loading}">
+    <div class="ui header">
+      Email Provider
+    </div>
     <div class="ui divider"></div>
     <div class="ui list">
       <div
