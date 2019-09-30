@@ -17,7 +17,7 @@
 
         <div ng-show="loginState === 'login'">
           <div class="ui login-password form">
-            Enter your email & password THEN click register or login
+            Enter your email & password.
             <br />
             <br />
             <form ng-submit="login()">
@@ -51,8 +51,46 @@
               </div>
             </form>
           </div>
+        </div>
 
-          <div class="ui form" ng-show="regIsOpen">
+        <div ng-show="loginState === 'register'">
+          <div class="ui login-password form">
+            Enter your email & password.
+            <br />
+            <br />
+            <form ng-submit="login()">
+              <div class="field">
+                <label> Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="foo@bar.com"
+                  ng-model="email"
+                />
+              </div>
+              <div class="field">
+                <label> Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Password (at least 6 characters)"
+                  ng-model="password"
+                  required
+                />
+              </div>
+              <!-- <div class="field">
+                <button
+                  id="login-password"
+                  type="submit"
+                  class="fluid ui login button"
+                >
+                  Login
+                </button>
+              </div> -->
+            </form>
+          </div>
+
+          <div class="ui form">
             <div class="ui divider"></div>
             <div class="field">
               <button
@@ -64,6 +102,12 @@
                 Register
               </button>
             </div>
+          </div>
+          <div class="forgot">
+            <br />
+            <a href="#" ng-click="setLoginState('login')">
+              Back to Login
+            </a>
           </div>
         </div>
 
@@ -95,8 +139,21 @@
         <div class="ui divider"></div>
 
         <div ng-show="loginState === 'login'" class="forgot">
+          <div class="field">
+            <button
+              id="register"
+              class="fluid ui register button"
+              ng-click="setLoginState('register')"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+
+        <div ng-show="loginState === 'login'" class="forgot">
+          <br />
           <a href="#" ng-click="setLoginState('forgot')">
-            Forgot Password?
+            Forgot password?
           </a>
         </div>
 
