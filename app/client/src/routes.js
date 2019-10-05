@@ -78,7 +78,7 @@ angular
           templateUrl: "views/application/application.html",
           controller: "ApplicationCtrl",
           data: {
-            requireVerified: true
+            requireVerified: false
           },
           resolve: {
             currentUser: function(UserService) {

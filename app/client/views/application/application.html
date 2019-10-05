@@ -36,8 +36,8 @@
 
           <div class="field" ng-show="!autoFilledSchool">
             <label>
-              School Attending/Attended. Enter 'None' if not found or not
-              attended</label
+              School Attending/Attended. Enter 'None' or your company name if
+              employed.</label
             >
             <div id="school" class="ui search">
               <div class="ui input">
@@ -82,20 +82,16 @@
           </div>
 
           <div class="field">
-            <label>I would describe myself as a...</label>
+            <label
+              >What is your role/dream role? I would describe myself as
+              a...</label
+            >
             <input
               type="text"
               placeholder="Designer, Data Scientist, iOS Wizard, Hacker Extraordinaire"
               ng-model="user.profile.description"
               name="description"
             />
-          </div>
-
-          <div class="field">
-            <label>
-              What would you like to learn or get out of NaijaHacks? (required)
-            </label>
-            <textarea ng-model="user.profile.essay" name="essay"> </textarea>
           </div>
 
           <div class="field">
@@ -130,9 +126,49 @@
               type="tel"
               name="phone"
               ng-model="user.profile.phoneNumber"
-              placeholder="(123) - 555 - 1234"
+              placeholder="+2348012345478"
               required
             />
+          </div>
+
+          <div class="field">
+            <label>
+              Have you attended a hackathon before?
+            </label>
+            <select name="focus" ng-model="user.profile.firstTime">
+              <option value=""></option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>
+              Let us know what your employment status is.
+            </label>
+            <select name="focus" ng-model="user.profile.firstTime">
+              <option value=""></option>
+              <option value="Employed">Employed</option>
+              <option value="Looking for a job">Looking for a job</option>
+              <option value="Unemployed">Unemployed</option>
+              <option value="Underemployed">Underemployed</option>
+              <option value="Looking to start a company"
+                >Looking to start a company</option
+              >
+            </select>
+          </div>
+
+          <div class="field">
+            <label>
+              Please tell us why you want to attend NaijaHacks? What do you want
+              to achieve at the end of it? (required)
+            </label>
+            <textarea
+              ng-model="user.profile.essay"
+              name="essay"
+              placeholder="Please be as detailed as possible because we can only accept a limited number of applicants that convince us with a good reason"
+            >
+            </textarea>
           </div>
 
           <!-- <div class="field"
