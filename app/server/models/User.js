@@ -65,7 +65,31 @@ var profile = {
       values: "B M".split(" ")
     }
   },
-  phoneNumber: String
+  phoneNumber: String,
+
+  city: {
+    type: String,
+    default: "Lagos"
+  },
+  employment: {
+    type: String,
+    enum: {
+      values: [
+        "Employed",
+        "Looking for a job",
+        "Unemployed",
+        "Underemployed",
+        "Looking to start a company"
+      ]
+    }
+  },
+
+  firstTime: {
+    type: String,
+    enum: {
+      values: ["Yes", "No"]
+    }
+  }
 };
 
 // Only after confirmed
