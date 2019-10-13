@@ -178,6 +178,9 @@ function calculateStats() {
           }
           newStats.categories[user.profile.focus].push(user.profile.name);
         }
+        if (user.profile) {
+          console.log(user.profile);
+        }
 
         // Count shirt sizes
         if (user.confirmation.shirtSize in newStats.shirtSizes) {

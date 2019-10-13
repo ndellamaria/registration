@@ -170,7 +170,7 @@ controller.sendAdmittanceEmail = function(email, name, callback) {
     subject: "NaijaHacks Participant Acceptance"
   };
 
-  const hashtag = "#NaijaHacks2018";
+  const hashtag = "#NaijaHacks2019";
 
   var locals = {
     title: "Congratulations...!!!",
@@ -181,7 +181,7 @@ controller.sendAdmittanceEmail = function(email, name, callback) {
       hashtag +
       " - Nigeria's Biggest and Official Hackathon." +
       " The next step is to confirm your participation, enter your t-shirt size, upload your CV/resume for job interviews and get excited!" +
-      ' To share your excitement and let your friends know, tweet/post/ig "I just got accepted to #NaijaHacks2018. Cant wait!!! @naijahacks"',
+      ' To share your excitement and let your friends know, tweet/post/ig "I just got accepted to #NaijaHacks2019. Cant wait!!! @naijahacks"',
     actionUrl: ROOT_URL,
     actionName: "Confirm your participation"
   };
@@ -225,7 +225,7 @@ controller.sendParticipantGuideEmail = function(email, name, callback) {
     subtitle: "Now is the time to meet other participants",
     description:
       name +
-      ", welcome to #NaijaHacks2018. You scaled through all the processes and #TeamNaijaHacks is proud of you. " +
+      ", welcome to #NaijaHacks2019. You scaled through all the processes and #TeamNaijaHacks is proud of you. " +
       "Everything you need is on the Participant Guide linked 👉 " +
       gettingStartedUrl +
       ". See you in Slack!",
