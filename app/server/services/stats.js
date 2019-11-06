@@ -178,9 +178,15 @@ function calculateStats() {
           }
           newStats.categories[user.profile.focus].push(user.profile.name);
         }
-        if (user.profile) {
-          console.log(user.profile);
-        }
+        // if (user.status.name == "incomplete") {
+        //   console.log(user.email);
+        // }
+        // if (
+        //   user.status.name == "submitted" &&
+        //   (!user.teamCode || user.teamCode.length < 1)
+        // ) {
+        //   console.log(user.email);
+        // }
 
         // Count shirt sizes
         if (user.confirmation.shirtSize in newStats.shirtSizes) {

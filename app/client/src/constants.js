@@ -13,7 +13,7 @@ angular
       "If you do not complete your application before the [APP_DEADLINE], you will not be considered!",
     SUBMITTED_TITLE: "Your application has been submitted!",
     SUBMITTED:
-      "Feel free to edit it at any time. However, once registration is closed, you will not be able to edit it any further.\nAdmissions will be determined by a EXTENSIVE REVIEW of your application. Please make sure your information is accurate and complete before registration is closed!",
+      "Feel free to edit it at any time. However, once registration is closed, you will not be able to edit it any further.\nAdmissions will be determined by an EXTENSIVE REVIEW of your application. Please make sure your information is accurate and complete before registration is closed!",
     CLOSED_AND_INCOMPLETE_TITLE:
       "Unfortunately, registration has closed, and the review process has begun.",
     CLOSED_AND_INCOMPLETE:
