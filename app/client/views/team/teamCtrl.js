@@ -27,6 +27,7 @@ angular.module("reg").controller("TeamCtrl", [
     }
 
     $scope.joinTeam = function() {
+      $scope.code = $scope.code ? $scope.code.toLowerCase() : $scope.code;
       UserService.joinOrCreateTeam($scope.code).then(
         response => {
           $scope.error = null;

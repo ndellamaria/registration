@@ -48,7 +48,7 @@ function sendOne(templateName, options, data, callback) {
 
   const email = new Email({
     message: {
-      from: `Uchi - #NaijaHacks2019 <team@naijahacks.com>`
+      from: `Uchi - #NaijaHacks2019 <community@naijahacks.com>`
     },
     send: true,
     transport: transporter

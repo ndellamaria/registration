@@ -8,7 +8,6 @@ angular.module("reg").controller("LoginCtrl", [
   function($scope, $http, $state, settings, Utils, AuthService) {
     // Is registration open?
     var Settings = settings.data;
-    console.log(Settings);
     $scope.regIsOpen = Utils.isRegOpen(Settings);
 
     // Start state for login
