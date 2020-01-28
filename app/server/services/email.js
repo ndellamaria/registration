@@ -48,7 +48,7 @@ function sendOne(templateName, options, data, callback) {
 
   const email = new Email({
     message: {
-      from: `Uchi - #NaijaHacks2019 <community@naijahacks.com>`
+      from: `Team NaijaHacks <community@naijahacks.com>`
     },
     send: true,
     transport: transporter
@@ -218,7 +218,7 @@ controller.sendParticipantGuideEmail = function(email, name, callback) {
   };
 
   const gettingStartedUrl =
-    "https://docs.google.com/document/d/1g7pLOi2plV8z5yWNGoprSbUGVYxptFHMizIXSJ6AbmE/edit?usp=sharing";
+    "https://docs.google.com/document/d/1XOpTSc-KaWWL27Wrv1He-ujwxMdyCNQTiHxPK1YfTZ8/edit?usp=sharing";
 
   var locals = {
     title: "You're in...!!!",
@@ -228,7 +228,7 @@ controller.sendParticipantGuideEmail = function(email, name, callback) {
       ", welcome to #NaijaHacks2019. You scaled through all the processes and #TeamNaijaHacks is proud of you. " +
       "Everything you need is on the Participant Guide linked 👉 " +
       gettingStartedUrl +
-      ". See you in Slack!",
+      ". See you on Slack!",
     actionUrl: gettingStartedUrl,
     actionName: "See participant guide"
   };

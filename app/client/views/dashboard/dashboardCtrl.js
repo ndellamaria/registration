@@ -47,6 +47,38 @@ angular.module("reg").controller("DashboardCtrl", [
         );
       }
     }
+    const twitterLabel = [
+      "Share with Friends",
+      "Tweet about NaijaHacks",
+      "Create awareness",
+      "Invite your friends",
+      "Help us promote"
+    ];
+
+    const twitterShare = [
+      "http://twitter.com/share?text=Guys, come join me @NaijaHacks. 🚂 Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall",
+      "http://twitter.com/share?text=$100,000 in prizes are up for grabs at @NaijaHacks. I just applied. Apply at 👉&url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall",
+      "http://twitter.com/share?text=@NaijaHacks 2019 is coming up this December. I just applied. 🙆 Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall",
+      "http://twitter.com/share?text=I just registered for @NaijaHacks. Come join me. 🚨Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall"
+    ];
+
+    const twitterShareAccepted = [
+      "http://twitter.com/share?text=Guys, come join me @NaijaHacks. 🙆 Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall",
+      "http://twitter.com/share?text=$100,000 in prizes are up for grabs at @NaijaHacks. I just got accepted. 💃 Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall",
+      "http://twitter.com/share?text=@NaijaHacks 2019 is coming up this December. I just got accepted. 🐴 Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall",
+      "http://twitter.com/share?text=I just got accepted for @NaijaHacks. Come join me. 🎟 Apply at &url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall"
+    ];
+
+    $scope.twitterLabel =
+      twitterLabel[Math.floor(Math.random() * twitterLabel.length)];
+
+    $scope.twitterShare =
+      twitterShare[Math.floor(Math.random() * twitterShare.length)];
+
+    $scope.twitterShareAccepted =
+      twitterShareAccepted[
+        Math.floor(Math.random() * twitterShareAccepted.length)
+      ];
 
     // Is registration open?
     var regIsOpen = ($scope.regIsOpen = Utils.isRegOpen(Settings));

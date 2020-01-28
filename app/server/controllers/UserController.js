@@ -330,26 +330,28 @@ UserController.updateConfirmationById = function(id, confirmation, callback) {
       });
     }
 
-    // You can only confirm acceptance if you're admitted and haven't declined.
+    // You can only confirm acceptance if you're admitted.
     User.findOneAndUpdate(
       {
         _id: id,
         verified: true,
-        "status.admitted": true,
-        "status.declined": { $ne: true }
+        "status.admitted": true
+        // "status.declined": { $ne: true }
       },
       {
         $set: {
           lastUpdated: Date.now(),
           confirmation: confirmation,
-          "status.confirmed": true
+          "status.confirmed": true,
+          "status.declined": false,
+          "status.anme": "confirmed"
         }
       },
       {
         new: true
       },
       (err, user) => {
-        Mailer.sendParticipantGuideEmail(user.email, user.profile.name);
+        // Mailer.sendParticipantGuideEmail(user.email, user.profile.name);
         callback(err, user);
       }
     );
@@ -431,7 +433,7 @@ UserController.getTeammates = function(id, callback) {
     User.find({
       teamCode: code
     })
-      .select("profile.name")
+      .select("profile.name email status.confirmed")
       .exec(callback);
   });
 };
@@ -665,7 +667,7 @@ UserController.admitUser = function(id, user, callback) {
         new: true
       },
       (err, user) => {
-        Mailer.sendAdmittanceEmail(user.email, user.profile.name);
+        // Mailer.sendAdmittanceEmail(user.email, user.profile.name);
         callback(err, user);
       }
     );

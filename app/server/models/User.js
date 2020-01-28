@@ -134,7 +134,9 @@ var confirmation = {
 
   signatureLiability: String,
   signaturePhotoRelease: String,
-  signatureCodeOfConduct: String
+  signatureCodeOfConduct: String,
+  focusArea: String,
+  origin: String
 };
 
 var status = {

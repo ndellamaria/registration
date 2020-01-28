@@ -97,14 +97,23 @@
           <p>
             {{ DASHBOARD.SUBMITTED }}
           </p>
-          <h1 class="centered">
+          <div class="ui divider"></div>
+
+          <div
+            style="font-weight:700;font-size:15pt"
+            ng-class="user.status.name"
+          >
             <a
-              href="http://twitter.com/share?text=I just registered for @NaijaHacks. Come join me. Apply at ⚠️🚨&url=https://naijahacks.com&hashtags=naijahacks2019,hackathonforall,thehackathonforall"
+              class="ui pink button"
+              href="{{ twitterShare }}"
               target="_blank"
               rel="noopener noreferrer"
-              >Share on twitter</a
+              >{{ twitterLabel }}</a
             >
-          </h1>
+            <br />
+          </div>
+
+          <div class="ui divider"></div>
 
           <div class="ui purple button" ui-sref="app.application">
             Edit your application
@@ -205,12 +214,19 @@
             ng-class="user.status.name"
             ng-if="dashState('confirmed')"
           >
-            <a
-              href="https://docs.google.com/document/d/1g7pLOi2plV8z5yWNGoprSbUGVYxptFHMizIXSJ6AbmE/edit?usp=sharing"
+            <!-- <a
+              href="https://docs.google.com/document/d/1XOpTSc-KaWWL27Wrv1He-ujwxMdyCNQTiHxPK1YfTZ8/edit?usp=sharing"
               target="_blank"
             >
               View participant guide
-            </a>
+            </a> -->
+            <a
+              class="ui blue button"
+              href="{{ twitterShareAccepted }}"
+              target="_blank"
+              rel="noopener noreferrer"
+              >{{ twitterLabel }}</a
+            >
             <br />
           </div>
 
@@ -230,6 +246,10 @@
           <p>
             {{ DASHBOARD.DECLINED }}
           </p>
+          <div class="ui purple button" ui-sref="app.confirmation">
+            {{ pastConfirmation ? "View" : "Edit" }} your confirmation
+            information
+          </div>
         </div>
       </div>
     </div>
