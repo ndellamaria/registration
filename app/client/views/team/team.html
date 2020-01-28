@@ -14,27 +14,34 @@
             {{ TEAM.NO_TEAM_REG_CLOSED }}
           </p>
         </div>
-        <div class="ui form" ng-show="!user.teamCode && regIsOpen">
+        <div class="ui form " ng-show="!user.teamCode && regIsOpen">
           <div class="title">
-            Join or Create a Team. Enter a team name and save then share it with
-            friends to come join you
-          </div>
-          <h1 class="centered" style="text-align: center">
-            <a
-              href="https://twitter.com/naijahacks/status/1189915525972926466?s=20"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Find team members</a
-            >
-          </h1>
+            Enter a team name and save then share it with friends to come join
+            you
+            <div class="ui divider"></div>
 
-          <br />
+            <div
+              style="font-weight:700;font-size:15pt"
+              ng-class="user.status.name center"
+            >
+              <a
+                class="ui blue button "
+                href="https://twitter.com/naijahacks/status/1189915525972926466?s=20"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Find team members</a
+              >
+              <br />
+            </div>
+
+            <div class="ui divider"></div>
+          </div>
 
           <div class="field">
             <input
               class="ui input"
               type="text"
-              placeholder="Choose your team name..."
+              placeholder="Enter your team name..."
               ng-model="code"
             />
           </div>
@@ -68,10 +75,14 @@
           </div>
 
           <p ng-repeat="user in teammates" class="item">
-            {{
-              user.profile.name ||
-                "Somebody (has not filled out their profile!)"
-            }}
+            {{ user.profile.name || "Somebody (has not filled out their
+            profile!)" }}: {{ user.email }}
+            <span
+              style="color: red;font-weight: bolder;"
+              ng-hide="user.status.confirmed === true"
+            >
+              incomplete</span
+            >
           </p>
 
           <div ng-show="regIsOpen">

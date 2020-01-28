@@ -76,7 +76,10 @@ function calculateStats() {
     wantsHardware: 0,
 
     checkedIn: 0,
-    categories: {}
+    categories: {},
+    cities: {},
+    focusAreas: {},
+    origins: {}
   };
 
   User.find({}).exec(function(err, users) {
@@ -85,6 +88,13 @@ function calculateStats() {
     }
 
     newStats.total = users.length;
+
+    let counter = 0;
+    const first = "";
+    const second = "";
+    const third = "";
+    const isToday = otherDate =>
+      new Date().toDateString() === new Date(otherDate).toDateString();
 
     async.each(
       users,
@@ -178,9 +188,84 @@ function calculateStats() {
           }
           newStats.categories[user.profile.focus].push(user.profile.name);
         }
+        if (
+          user.confirmation &&
+          user.confirmation.address &&
+          user.confirmation.address.city &&
+          user.confirmation.address.city.length > 0
+        ) {
+          let city = user.confirmation.address.city.toLowerCase();
+          if (
+            city.includes("lagos") ||
+            city.includes("lekki") ||
+            city.includes("mainland") ||
+            city.includes("ikoyi") ||
+            city.includes("oshodi") ||
+            city.includes("agege") ||
+            city.includes("yaba")
+          ) {
+            city = "lagos";
+          }
+          if (!newStats.cities[city]) {
+            newStats.cities[city] = 1;
+          }
+          newStats.cities[city] += 1;
+        }
+        if (
+          user.confirmation &&
+          user.confirmation.focusArea &&
+          user.confirmation.focusArea.length > 0
+        ) {
+          const { focusArea } = user.confirmation;
+
+          if (!newStats.focusAreas[focusArea]) {
+            newStats.focusAreas[focusArea] = 1;
+          }
+          newStats.focusAreas[focusArea] += 1;
+        }
+        if (
+          user.confirmation &&
+          user.confirmation.origin &&
+          user.confirmation.origin.length > 0
+        ) {
+          const { origin } = user.confirmation;
+
+          if (!newStats.origins[origin]) {
+            newStats.origins[origin] = 1;
+          }
+          newStats.origins[origin] += 1;
+        }
         // if (user.status.name == "incomplete") {
         //   console.log(user.email);
         // }
+        // if (user.status.name == "confirmed") {
+        //   //   console.log(user.email);
+        // }
+        if (user.status.name == "confirmed") {
+          // console.log(user.profile.phoneNumber);
+          counter += 1;
+          // if (counter <= 300) {
+          //   console.log(user.email);
+          //   if (counter == 300) {
+          //     console.log("\n\n");
+          //   }
+          // } else if (counter <= 600) {
+          //   console.log(user.email);
+          //   if (counter == 600) {
+          //     console.log("\n\n");
+          //   }
+          // } else if (counter <= 900) {
+          //   console.log(user.email);
+          //   if (counter == 900) {
+          //     console.log("\n\n");
+          //   }
+          // } else {
+          //   console.log(user.email);
+          // }
+        }
+        // console.log(profile.name, user.email);
+
+        // Needs to join team
         // if (
         //   user.status.name == "submitted" &&
         //   (!user.teamCode || user.teamCode.length < 1)
@@ -286,6 +371,67 @@ function calculateStats() {
           });
         });
         newStats.categories = categories;
+
+        const focusAreas = [];
+        _.keys(newStats.focusAreas).forEach(function(key) {
+          focusAreas.push({
+            name: key,
+            total: newStats.focusAreas[key]
+          });
+        });
+        newStats.focusAreas = focusAreas;
+
+        const origins = [];
+        let totalReimbursementAmount = 0;
+        _.keys(newStats.origins).forEach(function(key) {
+          const originTotal = newStats.origins[key];
+          let amount = 0;
+          switch (key) {
+            case "west":
+              amount = 2500 * originTotal;
+              totalReimbursementAmount += amount;
+              break;
+            case "east":
+              amount = 4000 * originTotal;
+              totalReimbursementAmount += amount;
+              break;
+            case "nigeria":
+              amount = 5000 * originTotal;
+              totalReimbursementAmount += amount;
+              break;
+            case "africa":
+              amount = 10000 * originTotal;
+              totalReimbursementAmount += amount;
+              break;
+            case "world":
+              amount = 15000 * originTotal;
+              totalReimbursementAmount += amount;
+              break;
+            default:
+            // code block
+          }
+          origins.push({
+            name: key,
+            total: newStats.origins[key],
+            amount
+          });
+        });
+        newStats.origins = origins;
+        newStats.totalReimbursementAmount = totalReimbursementAmount;
+
+        const cities = [];
+        _.keys(newStats.cities).forEach(function(key) {
+          cities.push({
+            name: key,
+            total: newStats.cities[key]
+          });
+        });
+        newStats.cities = cities;
+
+        // console.log(`Name,Total`);
+        // for (const { name, total } of newStats.cities) {
+        //   console.log(`${name},${total}`);
+        // }
 
         console.log("Stats updated!");
         newStats.lastUpdated = new Date();

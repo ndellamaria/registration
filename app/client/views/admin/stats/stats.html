@@ -123,9 +123,18 @@
         </div>
 
         <div class="ui divider"></div>
-
+        
         <div class="item">
           <i class="green money icon"></i>
+          <div class="content">
+            <strong>
+              Total Reimbursement Amount:
+            </strong>₦ {{stats.totalReimbursementAmount}}
+          </div>
+        </div>
+
+        <div class="item">
+          <i class="grey money icon"></i>
           <div class="content">
             <strong>
               Total Reimbursements:
@@ -133,12 +142,23 @@
           </div>
         </div>
 
+
         <div class="item">
           <i class="frown icon"></i>
           <div class="content">
             <strong>
               Still Need Reimbursement:
             </strong>{{stats.reimbursementMissing}}
+          </div>
+        </div>
+
+        <div class="ui divider"></div>
+      
+        <div class="item" ng-repeat="area in stats.focusAreas">
+          <div class="content">
+            <strong>
+              {{area.name}}
+            </strong>{{area.total}}
           </div>
         </div>
 
@@ -213,18 +233,38 @@
     <div class="ui divider"></div>
       <div class="ui list">
         <div class="item">
-          <strong>Fresh:</strong> {{stats.demo.year['2019']}} ({{stats.demo.year['2019'] / stats.total * 100 | number: 1}}%)
+          <strong>2019 and later:</strong> {{stats.demo.year['2019']}} ({{stats.demo.year['2019'] / stats.total * 100 | number: 1}}%)
         </div>
         <div class="item">
-          <strong>Soph:</strong> {{stats.demo.year['2018']}} ({{stats.demo.year['2018'] / stats.total * 100 | number: 1}}%)
+          <strong>2018:</strong> {{stats.demo.year['2018']}} ({{stats.demo.year['2018'] / stats.total * 100 | number: 1}}%)
         </div>
         <div class="item">
-         <strong>Junior:</strong> {{stats.demo.year['2017']}} ({{stats.demo.year['2017'] / stats.total * 100 | number: 1}}%)
+         <strong>2017:</strong> {{stats.demo.year['2017']}} ({{stats.demo.year['2017'] / stats.total * 100 | number: 1}}%)
         </div>
         <div class="item">
-          <strong>Senior:</strong> {{stats.demo.year['2016']}} ({{stats.demo.year['2016'] / stats.total * 100 | number: 1}}%)
+          <strong>2016 and earlier:</strong> {{stats.demo.year['2016']}} ({{stats.demo.year['2016'] / stats.total * 100 | number: 1}}%)
         </div>
       </div>
+  </div>
+
+  <div
+    class="ui purple segment"
+    ng-class="{'loading': loading}">
+    <div class="ui header">
+      Categories
+    </div>
+    <div class="ui list">
+      <div
+        class="item"
+        ng-repeat="category in stats.categories track by $index">
+        <div class="header">
+          {{category.name}} ({{category.users.length}})
+        </div>
+        <!-- <hr>
+        <p ng-repeat="user in category.users track by $index"
+          style="line-height:7px"> {{user}} </p> -->
+      </div>
+    </div>
   </div>
 
   <div
@@ -241,27 +281,6 @@
           {{team.name}}
         </div>
         <span ng-repeat="user in team.users"> {{user}} <br/> </span>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="ui purple segment"
-    ng-class="{'loading': loading}">
-    <div class="ui header">
-      Categories
-    </div>
-    <div class="ui list">
-      <div
-        class="item"
-        ng-repeat="category in stats.categories track by $index">
-        <hr>
-        <div class="header">
-          {{category.name}} ({{category.users.length}})
-        </div>
-        <hr>
-        <p ng-repeat="user in category.users track by $index"
-          style="line-height:7px"> {{user}} </p>
       </div>
     </div>
   </div>

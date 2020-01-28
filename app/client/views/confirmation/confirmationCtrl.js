@@ -1,3 +1,4 @@
+const angular = require("angular");
 const swal = require("sweetalert");
 
 angular.module("reg").controller("ConfirmationCtrl", [
@@ -15,6 +16,26 @@ angular.module("reg").controller("ConfirmationCtrl", [
     $scope.pastConfirmation = Date.now() > user.status.confirmBy;
 
     $scope.formatTime = Utils.formatTime;
+
+    user.confirmation.phoneNumber =
+      user.confirmation.phoneNumber || user.profile.phoneNumber || "";
+
+    if (!user.confirmation.address) {
+      user.confirmation.address = {};
+    }
+
+    user.confirmation.address.country =
+      user.confirmation.address.country || "Nigeria";
+
+    user.confirmation.address.name =
+      user.confirmation.address.name || user.profile.name;
+
+    $scope.focusAreas = [
+      "Education",
+      "Housing/Real estate",
+      "Employment/Job Creation",
+      "Citizen safety"
+    ];
 
     _setupForm();
 
@@ -122,6 +143,8 @@ angular.module("reg").controller("ConfirmationCtrl", [
     $scope.submitForm = function() {
       if ($(".ui.form").form("is valid")) {
         _updateUser();
+      } else {
+        swal("Uh oh!", "Please Fill The Required Fields", "error");
       }
     };
   }

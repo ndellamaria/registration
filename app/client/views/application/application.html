@@ -6,9 +6,8 @@
   <div class="ui stackable page grid">
     <div class="column">
       <div class="ui form" ng-class="{'loading': loading}">
-        <div class="divided title">Basic Information</div>
-
-        <fieldset ng-disabled="regIsClosed">
+        <fieldset ng-disabled="regIsClosed" ng-hide="!steps[0]">
+          <div class="divided title">Basic Information</div>
           <div class="field">
             <label> Email </label>
             <input
@@ -24,6 +23,51 @@
             <input type="text" name="name" ng-model="user.profile.name" />
           </div>
 
+          <div class="field">
+            <label>Gender</label>
+            <select name="gender" ng-model="user.profile.gender">
+              <option value="">Gender</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="O">Other</option>
+              <option value="N">I prefer not to answer.</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label> What's your phone number? (required) </label>
+            <p>
+              We need this in case we need to get ahold of you!
+            </p>
+            <input
+              type="tel"
+              name="phone"
+              ng-model="user.profile.phoneNumber"
+              placeholder="+2348012345478"
+              required
+            />
+          </div>
+
+          <br />
+
+          <div class="field title" ng-hide="regIsClosed">
+            <p>
+              Step 1 of 3
+            </p>
+            <button class="  ui purple button" disabled="true">
+              Back
+            </button>
+            <button
+              type="submit"
+              class=" ui purple button"
+              ng-click="updateStep(0, 1)"
+            >
+              Next
+            </button>
+          </div>
+        </fieldset>
+        <fieldset ng-disabled="regIsClosed" ng-hide="!steps[1]">
+          <div class="divided title">Skill</div>
           <div class="field" ng-show="autoFilledSchool">
             <label> School </label>
             <input
@@ -71,13 +115,18 @@
           </div>
 
           <div class="field">
-            <label>Gender</label>
-            <select name="gender" ng-model="user.profile.gender">
-              <option value="">Gender</option>
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-              <option value="O">Other</option>
-              <option value="N">I prefer not to answer.</option>
+            <label>
+              What is your employment status?
+            </label>
+            <select name="focus" ng-model="user.profile.employment">
+              <option value=""></option>
+              <option value="Employed">Employed</option>
+              <option value="Looking for a job">Looking for a job</option>
+              <option value="Unemployed">Unemployed</option>
+              <option value="Underemployed">Underemployed</option>
+              <option value="Looking to start a company"
+                >Looking to start a company</option
+              >
             </select>
           </div>
 
@@ -106,29 +155,43 @@
             />
           </div>
 
+          <br />
+
+          <div class="field title" ng-hide="regIsClosed">
+            <p>
+              Step 2 of 3
+            </p>
+            <button
+              type="submit"
+              class="  ui purple button"
+              ng-click="updateStep(1,0)"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              class=" ui purple button"
+              ng-click="updateStep(1, 2)"
+            >
+              Next
+            </button>
+          </div>
+        </fieldset>
+        <fieldset ng-disabled="regIsClosed" ng-hide="!steps[2]">
+          <div class="divided title">Supporting Information</div>
+
           <div class="field">
             <label
               >Which Category will you like to participate in? (required)</label
             >
+            <p>
+              Pick Main category if you have programmed before
+            </p>
             <select name="focus" ng-model="user.profile.focus">
               <option value="">Category</option>
               <option value="B">Beginner Category</option>
               <option value="M">Main Category</option>
             </select>
-          </div>
-
-          <div class="field">
-            <label> What's your phone number? (required) </label>
-            <p>
-              We need this in case we need to get ahold of you!
-            </p>
-            <input
-              type="tel"
-              name="phone"
-              ng-model="user.profile.phoneNumber"
-              placeholder="+2348012345478"
-              required
-            />
           </div>
 
           <div class="field">
@@ -139,22 +202,6 @@
               <option value=""></option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>
-              Let us know what your employment status is.
-            </label>
-            <select name="focus" ng-model="user.profile.employment">
-              <option value=""></option>
-              <option value="Employed">Employed</option>
-              <option value="Looking for a job">Looking for a job</option>
-              <option value="Unemployed">Unemployed</option>
-              <option value="Underemployed">Underemployed</option>
-              <option value="Looking to start a company"
-                >Looking to start a company</option
-              >
             </select>
           </div>
 
@@ -171,28 +218,22 @@
             </textarea>
           </div>
 
-          <!-- <div class="field"
-             ng-hide="isMitStudent">
-            Because of limitations imposed by MIT, we are not legally allowed to host
-            non-MIT minors (those under 18) for HackMIT 2015. Checking the box below affirms that you are or will be 18 years or older by September 19th, 2015.
-          </p>
-          <p>
-            <strong>
-            We will be checking ID. If you are a non-MIT minor, you will be turned away at the door.
-            </strong>
-          </p>
-          <div class="ui checkbox">
-            <input type="checkbox" id="adult" ng-model="user.profile.adult">
-            <label for="adult">I am 18 or older.</label>
-          </div>
-        </div> -->
-
           <br />
 
-          <div class="field" ng-hide="regIsClosed">
+          <div class="field title" ng-hide="regIsClosed">
+            <p>
+              Step 3 of 3
+            </p>
             <button
               type="submit"
-              class="fluid ui purple button"
+              class="  ui purple button"
+              ng-click="updateStep(2,1)"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              class=" ui purple button"
               ng-click="submitForm()"
             >
               Submit

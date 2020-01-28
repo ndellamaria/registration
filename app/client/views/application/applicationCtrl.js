@@ -38,6 +38,12 @@ angular.module("reg").controller("ApplicationCtrl", [
 
     $scope.regIsClosed = Date.now() > settings.data.timeClose;
 
+    $scope.steps = [true, false, false];
+    $scope.updateStep = (stepToDisable, stepToEnable) => {
+      $scope.steps[stepToDisable] = false;
+      $scope.steps[stepToEnable] = true;
+    };
+
     /**
      * TODO: JANK WARNING
      */

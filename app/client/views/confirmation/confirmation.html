@@ -18,11 +18,55 @@
               type="tel"
               name="phone"
               ng-model="user.confirmation.phoneNumber"
-              placeholder="(123) - 555 - 1234"
+              placeholder="+Include country code"
               required
             />
           </div>
           <div class="field">
+            <label> What focus area will you build for? </label>
+            <p>
+              We need this to prepare mentors!
+            </p>
+            <select
+              name="shirt"
+              ng-model="user.confirmation.focusArea"
+              required
+            >
+              <option value=""></option>
+              <option value="{{ focus }}" ng-repeat="focus in focusAreas"
+                >{{ focus }}</option
+              >
+            </select>
+          </div>
+          <div class="field">
+            <label> Where are you coming? </label>
+            <p>
+              We need to for planning!
+            </p>
+            <label> City </label>
+            <input
+              type="text"
+              name="city"
+              ng-model="user.confirmation.address.city"
+            />
+          </div>
+          <div class="field">
+            <label> State/Province/Region </label>
+            <input
+              type="text"
+              name="state"
+              ng-model="user.confirmation.address.state"
+            />
+          </div>
+          <div class="field">
+            <label> Country </label>
+            <input
+              type="text"
+              name="country"
+              ng-model="user.confirmation.address.country"
+            />
+          </div>
+          <!-- <div class="field">
             <label> Dietary Restrictions </label>
 
             <p>
@@ -41,7 +85,7 @@
                 <label>{{ key }}</label>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="field">
             <label> Shirt Size (required) </label>
@@ -69,7 +113,7 @@
             </select>
           </div>
 
-          <div class="field">
+          <!-- <div class="field">
             <label>
               Will you be needing hardware?
             </label>
@@ -78,7 +122,9 @@
                 type="checkbox"
                 ng-model="user.confirmation.wantsHardware"
               />
-              <label> Yes, I would like to use hardware in my hack. </label>
+              <label>
+                Yes, I would like to use hardware in my project/hack.
+              </label>
             </div>
           </div>
 
@@ -87,31 +133,32 @@
               What kind of hardware would be useful for you?
             </label>
             <p>
-              We will have a hardware checkout, and we'll try our best to
-              provide things that would be useful to you - however, we can't
-              guarantee everything. We will publish a list of available hardware
-              closer to the day of the event.
+              We'll try our best to provide things that would be useful to you -
+              however, we can't guarantee everything. We will publish a list of
+              available hardware closer to NaijaHacks date and where to pick up.
             </p>
             <input type="text" ng-model="user.confirmation.hardware" />
-          </div>
+          </div> -->
 
           <br />
           <br />
 
           <div class="divided title">Skills & Accomplishments</div>
 
-          <div class="field">
-            <label> What are you studying/what did you study? </label>
+          <!-- <div class="field">
+            <label>
+              What are you studying/what did you study/what do you do?
+            </label>
             <input
               type="text"
               name="study"
               placeholder="Computer Science, Product Design, Basket Weaving, etc."
               ng-model="user.confirmation.major"
             />
-          </div>
+          </div> -->
 
           <div class="field">
-            <label> Github/Dribble/Portfolio </label>
+            <label> Github/Dribble/Portfolio/Website </label>
             <input
               type="text"
               name="github"
@@ -131,22 +178,26 @@
           </div>
 
           <div class="field">
-            <label> Skill Sheet/CV (required) </label>
+            <label> CV/Resume/Skill Sheet (required) </label>
             <p>
               Upload a document outlining any skills or experience you'd like to
               share (ex. CV or resume) to enable employers contact you for jobs.
               PDF preferred!
             </p>
+            <p>
+              So that we can connect you faster to employers, please name your
+              CV/Resume: <strong>{{ fileName }}</strong>
+            </p>
             <a
               target="_blank"
-              href="https://www.dropbox.com/request/Q89dDWe9Dy18AUOoFx7D"
+              href="https://www.dropbox.com/request/DnsTO9JFUIEZ3CLIKV9Y"
               class="ui pink button"
             >
-              Upload
+              Upload CV/Resume
             </a>
           </div>
 
-          <br />
+          <!-- <br />
           <br />
 
           <div class="divided title">Hosting Details</div>
@@ -228,32 +279,37 @@
               <textarea name="hostNotes" ng-model="user.confirmation.hostNotes">
               </textarea>
             </div>
-          </div>
+          </div> -->
 
           <br />
           <br />
 
-          <div class="divided title">Travel</div>
+          <div class="divided title" ng-hide="true">Travel</div>
 
-          <div class="field">
+          <div class="field" ng-hide="true">
             <p>
-              As a reminder, our reimbursement policy is as follows:
+              As a reminder, this is a guideline for a potential reimbursement
+              opportunity and is not guaranteed:
             </p>
             <ul>
-              <li>Up to $100 from within Massachusetts</li>
-              <li>Up to $200 from anywhere else in North America</li>
-              <li>Up to $500 from outside North America</li>
+              <li>Up to N2,500 from within Western Nigeria</li>
+              <li>Up to N4,000 from within Eastern Nigeria</li>
+              <li>Up to N5,000 from anywhere else in Nigeria</li>
+              <li>Up to N10,000 from anywhere else in Africa</li>
+              <li>Up to 15,000 from outside Africa</li>
             </ul>
             <p>
-              We’ll also be sending buses free of charge to Princeton, NJ; New
-              York, NY; New Haven, CT; and Providence, RI. Again, we only
-              reimburse the minimum-cost travel path. Head back to the dashboard
-              to read our full travel policy.
+              We will potentially only reimburse the minimum-cost travel path
+              AND NaijaHacks reserves the right to cancel this reimbursement
+              option at any time. Ask the NaijaHacks team full travel policy.
             </p>
           </div>
 
-          <div class="field">
-            <label> Will you be needing travel reimbursement? </label>
+          <div class="field" ng-hide="true">
+            <label>
+              Will you be traveling from outside Lagos and needing travel
+              reimbursement?
+            </label>
             <div class="ui checkbox">
               <input
                 type="checkbox"
@@ -264,6 +320,18 @@
           </div>
 
           <div ng-show="user.confirmation.needsReimbursement">
+            <div class="field">
+              <label>Where are you coming from?</label>
+              <select name="focus" ng-model="user.confirmation.origin">
+                <option value=""></option>
+                <option value="lagos">Lagos</option>
+                <option value="west">Western Nigeria</option>
+                <option value="east">Eastern Nigeria</option>
+                <option value="nigeria">Somewhere else in Nigeria</option>
+                <option value="africa">Somewhere else in Africa</option>
+                <option value="world">Outside Africa</option>
+              </select>
+            </div>
             <div class="ui header">
               Mailing Address
             </div>
@@ -297,7 +365,8 @@
 
             <div class="field">
               <label>
-                Address Line 2 - Apartment, suite, unit, building, floor, etc.
+                Address Line 2 - Landmark, Apartment, suite, unit, building,
+                floor, etc.
               </label>
               <input
                 type="text"
@@ -306,7 +375,7 @@
               />
             </div>
 
-            <div class="four fields">
+            <!-- <div class="four fields">
               <div class="field">
                 <label> City </label>
                 <input
@@ -339,17 +408,18 @@
                   ng-model="user.confirmation.address.country"
                 />
               </div>
-            </div>
+            </div> -->
 
             <div class="field">
               <label> Travel Receipt </label>
               <p>
                 So that we can process your reimbursement faster, please name
-                your receipt: <strong>{{ fileName }}</strong>
+                your receipt (Bus ticket or proof of where you live):
+                <strong>{{ fileName }}</strong>
               </p>
               <a
                 target="_blank"
-                href="https://go.hackmit.org/travel-receipts"
+                href="https://www.dropbox.com/request/oANfTrr9rpkrCrctzk7f"
                 class="ui pink button"
               >
                 Upload Receipt
@@ -363,11 +433,11 @@
           <div class="divided title">Legal</div>
 
           <div class="field">
-            <label> Code of Conduct </label>
+            <label> Code of Conduct (required) </label>
             <p>
               <a
                 target="_blank"
-                href="https://drive.google.com/open?id=1YZdLWpH8Dr2Pub-SUFyND3V2TWODhOpY"
+                href="https://drive.google.com/drive/folders/1YzGBn4VnzVYZLogbaRqRKOptCnqN543o?usp=sharing"
               >
                 Hacker Code of Conduct
               </a>
@@ -391,11 +461,11 @@
           </div>
 
           <div class="field">
-            <label> Photo Release </label>
+            <label> Photo Release (required) </label>
             <p>
               <a
                 target="_blank"
-                href="https://drive.google.com/file/d/1h04cQO0nkDRTL7Fuebu3zdKDrz7spOoz/view?usp=sharing"
+                href="https://drive.google.com/drive/folders/1YzGBn4VnzVYZLogbaRqRKOptCnqN543o?usp=sharing"
               >
                 Photo Release
               </a>
@@ -417,7 +487,7 @@
           </div>
 
           <div class="field">
-            <label> Participant Agreement </label>
+            <label> Participant Agreement (required) </label>
             <p>
               <!-- <a
                 target="_blank"
@@ -426,7 +496,7 @@
               </a> -->
               <a
                 target="_blank"
-                href="https://drive.google.com/open?id=1k_x3uoldv-GV1NKQSwDPs9rLcWQTvex8"
+                href="https://drive.google.com/drive/folders/1YzGBn4VnzVYZLogbaRqRKOptCnqN543o?usp=sharing"
               >
                 Terms and Conditions
               </a>
